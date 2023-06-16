@@ -1,0 +1,30 @@
+{
+  "ts-node": { "transpileOnly": true },
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2021",
+    "lib": ["ES2021"],
+
+    /* Modules */
+    "module": "Node16",
+    "moduleResolution": "node16",
+
+    /* Emit */
+    "outDir": "./lib",
+    "declaration": true,
+
+    /* Interop Constraints */
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"]
+}
