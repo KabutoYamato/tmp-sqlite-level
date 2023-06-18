@@ -226,6 +226,8 @@ export class SQLiteLevelSQL<SQLK, SQLV> {
 
   async OpenConnection(options: AbstractOpenOptions): Promise<void> {
     await Promise.resolve(0);
+    await import("better-sqlite3/build/Release/better_sqlite3.node");
+
     if (!this.db) {
       this.db = new SQLite(this.loc);
       this.db.pragma("cache_size=10000");
