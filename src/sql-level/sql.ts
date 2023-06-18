@@ -114,13 +114,14 @@ export interface SQLiteLevelSchema {
 
 export class SQLiteLevelSQL<SQLK, SQLV> {
   private schema: Required<SQLiteLevelSchema>;
-  private db: Database | undefined;
+  private db: Database | null;
 
   constructor(readonly loc: string, readonly sch: SQLiteLevelSchema) {
     this.schema = {
       levelTable: sch.levelTable ?? "Data",
       idxName: sch.idxName ?? "unique_sub_key_idx",
     };
+    this.db = null
   }
 
   private _ParseRange(options: PrefixRangeOptions<SQLD>): PreparedQuery {
@@ -225,18 +226,25 @@ export class SQLiteLevelSQL<SQLK, SQLV> {
   }
 
   async OpenConnection(options: AbstractOpenOptions): Promise<void> {
+    console.log(1)
     await Promise.resolve(0);
+    console.log(2)
     await import("better-sqlite3/build/Release/better_sqlite3.node");
+    console.log(3)
 
-    if (!this.db) {
+    if (this.db === null) {
+      console.log(3.1)
       this.db = new SQLite(this.loc);
+      console.log(3.2)
       this.db.pragma("cache_size=10000");
       // this.db.pragma("locking_mode=EXCLUSIVE");
       // this.db.pragma("synchronous=NORMAL");
       this.db.pragma("page_size=4096");
       this.db.pragma("journal_mode=WAL");
       this.db.pragma("cache_size=5000");
+      console.log(3.3)
     }
+    console.log(4)
 
     this.db
       .prepare(
@@ -246,22 +254,22 @@ export class SQLiteLevelSQL<SQLK, SQLV> {
           )`
       )
       .run();
-
+    console.log(5)
     this.db
       .prepare(
         `CREATE UNIQUE INDEX IF NOT EXISTS "${this.schema.idxName}" 
           ON "${this.schema.levelTable}"(key)`
       )
       .run();
-
+    console.log(6)
     return;
   }
 
   async CloseConnection(): Promise<void> {
     await Promise.resolve(0);
-    if (this.db) {
+    if (this.db !== null) {
       this.db.close();
-      this.db = undefined;
+      this.db = null;
     }
     return;
   }
