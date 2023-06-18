@@ -234,6 +234,7 @@ export class SQLiteLevelSQL<SQLK, SQLV> {
 
     if (this.db === null) {
       console.log(3.1)
+      console.log(this.loc)
       this.db = new SQLite(this.loc);
       console.log(3.2)
       this.db.pragma("cache_size=10000");
