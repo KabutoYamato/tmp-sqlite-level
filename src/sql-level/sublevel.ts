@@ -7,6 +7,7 @@ import {
   AbstractGetOptions,
   AbstractIteratorOptions,
   AbstractKeyIteratorOptions,
+  AbstractLevel,
   AbstractOpenOptions,
   AbstractPutOptions,
   AbstractSublevel,

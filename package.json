@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "nyc ts-node ./src/test.spec.ts | tap-nyc",
-    "prepare":"tsc"
+    "prepare": "tsc"
   },
   "repository": {
     "type": "git",

@@ -143,12 +143,14 @@ export class SQLiteLevel<
 
   // SUBLEVEL
 
+  
   _sublevel<K = SQLK, V = SQLV>(
     name: string,
     options: AbstractSublevelOptions<K, V>
   ) {
     return new SQLiteSublevel(this, name, options);
   }
+  
 
   // ITERATORS
 

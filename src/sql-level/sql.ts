@@ -227,7 +227,7 @@ export class SQLiteLevelSQL<SQLK, SQLV> {
 
   async OpenConnection(options: AbstractOpenOptions): Promise<void> {
     await Promise.resolve(0);
-    await import("better-sqlite3/build/Release/better_sqlite3.node");
+    if(false as true) await import("better-sqlite3/build/Release/better_sqlite3.node");
 
     if (this.db === null) {
       this.db = new SQLite(this.loc);
